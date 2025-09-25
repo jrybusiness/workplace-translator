@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>職場真話翻譯器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>職場真話翻譯器</h1>
+        <div class="mode-selector">
+            <button id="modePredefined" class="active">常見客套話</button>
+            <button id="modeAI">AI判斷</button>
+        </div>
+
+        <div id="predefinedSection" class="translation-section">
+            <h2>常見客套話翻譯</h2>
+            <div class="input-section">
+                <textarea id="inputPhrasePredefined" placeholder="輸入職場客套話..."></textarea>
+                <button id="translateBtnPredefined">翻譯</button>
+            </div>
+            <div class="output-section">
+                <h3>真心話：</h3>
+                <p id="outputTruthPredefined"></p>
+            </div>
+        </div>
+
+        <div id="aiSection" class="translation-section hidden">
+            <h2>AI判斷翻譯</h2>
+            <div class="input-section">
+                <textarea id="inputPhraseAI" placeholder="輸入職場客套話，讓AI判斷..."></textarea>
+                <button id="translateBtnAI">AI翻譯</button>
+            </div>
+            <div class="output-section">
+                <h3>真心話：</h3>
+                <p id="outputTruthAI"></p>
+            </div>
+            <div class="ai-notice">
+                <p><strong>注意：</strong>AI翻譯功能需要後端服務支援，目前僅提供常見客套話翻譯功能。</p>
+            </div>
+        </div>
+
+        <div class="phrase-list">
+            <h3>常見客套話列表</h3>
+            <div class="phrase-grid" id="phraseGrid"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
