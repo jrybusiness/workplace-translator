@@ -88,15 +88,41 @@ document.addEventListener('DOMContentLoaded', () => {
         outputTruthPredefined.textContent = translatedTruth;
     });
 
-    // AI判斷翻譯功能 (靜態版本)
-    translateBtnAI.addEventListener('click', () => {
+    // AI判斷翻譯功能 (連接後端API)
+    translateBtnAI.addEventListener('click', async () => {
         const input = inputPhraseAI.value.trim();
         if (!input) {
             outputTruthAI.textContent = '請輸入客套話。';
             return;
         }
 
-        outputTruthAI.textContent = 'AI翻譯功能需要後端服務支援。目前建議使用「常見客套話」功能，或查看下方的客套話列表。';
+        outputTruthAI.textContent = 'AI正在努力翻譯中...';
+        translateBtnAI.disabled = true;
+        translateBtnAI.textContent = '翻譯中...';
+
+        try {
+            const response = await fetch('https://8xhpiqcv1jdm.manus.space/api/translate-ai', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ phrase: input })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                outputTruthAI.textContent = data.truth;
+            } else {
+                outputTruthAI.textContent = data.error || 'AI翻譯失敗，請稍後再試。';
+            }
+        } catch (error) {
+            console.error('Error during AI translation:', error);
+            outputTruthAI.textContent = 'AI翻譯過程中發生錯誤，請檢查網路連線或稍後再試。';
+        } finally {
+            translateBtnAI.disabled = false;
+            translateBtnAI.textContent = 'AI翻譯';
+        }
     });
 
     // 初始化
