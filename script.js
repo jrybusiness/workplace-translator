@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
         translateBtnAI.textContent = "翻譯中...";
 
         try {
-            const response = await fetch("https://8xhpiqcv1jdm.manus.space/api/translate-ai", {
+            const response = await fetch("https://xlhyimcd9qo6.manus.space/api/translate-ai", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
